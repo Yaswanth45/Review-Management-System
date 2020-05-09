@@ -2,6 +2,7 @@ package com.cts.review.controller;
 
 import com.cts.review.entity.Product;
 import com.cts.review.service.ReviewService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,11 +28,16 @@ public class ReviewController {
 	consumes = "A new Review in JSON",
 	notes = "Hit this URL to get a new product's details"
 	)
-    //@HystrixCommand(fallbackMethod = "fallback")
+    @HystrixCommand(fallbackMethod = "fallback")
     @RequestMapping(value = "reviews/products/{p_id}", method = RequestMethod.GET)
     public Product getReviews(@PathVariable(name="p_id") int productId){
         log.info("Getting info from product");
         return reviewService.getReviews(productId);
+    }
+
+    public String fallback(String err){
+        err="Server down So you are seeing this message";
+        return err;
     }
 
     @ApiOperation(value = "Delete a Product Review in Product Service",
