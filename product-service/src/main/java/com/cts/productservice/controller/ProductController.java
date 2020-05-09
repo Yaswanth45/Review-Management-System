@@ -1,5 +1,6 @@
 package com.cts.productservice.controller;
 
+import java.util.List;
 
 import com.cts.productservice.entity.*;
 import com.cts.productservice.service.*;
@@ -46,14 +47,14 @@ public class ProductController {
 	notes = "Hit this URL to get a  Product review details"
 	)
 	@RequestMapping("reviews/products/{p_id}")
-	public ResponseEntity<Product> getByProductId(@PathVariable(name = "p_id") int productId) {
-		ResponseEntity<Product> result;
+	public ResponseEntity<List<Product>> getByProductId(@PathVariable(name = "p_id") int productId) {
+		ResponseEntity<List<Product>> result;
 		log.debug("Request to get a review by productId {}",productId);
-		Product entity = productService.findByProductId(productId).orElse(null);
+		List<Product> entity = productService.findByProductId(productId);
 		if (null != entity) {
-			result = new ResponseEntity<Product>(entity, HttpStatus.OK);
+			result = new ResponseEntity<List<Product>>(entity, HttpStatus.OK);
 		} else {
-			result = new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+			result = new ResponseEntity<List<Product>>(HttpStatus.NOT_FOUND);
 		}
 		log.debug("Reviews by Product Id {}",result);
 		return result;
@@ -74,9 +75,9 @@ public class ProductController {
 	notes = "Hit this URL to get all review details"
 	)
     @RequestMapping("reviews/products")
-	public ResponseEntity<Iterable<Product>> findAll() {
+	public ResponseEntity<List<Product>> findAll() {
 		log.debug("Request to get the products {}");
-		ResponseEntity<Iterable<Product>> result=new ResponseEntity<Iterable<Product>>(productService.findAll(),HttpStatus.OK);
+		ResponseEntity<List<Product>> result=new ResponseEntity<List<Product>>(productService.findAll(),HttpStatus.OK);
 		log.debug("All Product reviews {}",result);
 
 		return result;

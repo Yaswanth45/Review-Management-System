@@ -74,4 +74,12 @@ public class Battery {
         this.batteryRating = batteryRating;
     }
 
+    public Battery(int batteryId, String capacity, Product product, String batteryReviewText, int batteryRating) {
+        this.batteryId = batteryId;
+        this.capacity = capacity;
+        this.product = product;
+        this.batteryReviewText = batteryReviewText;
+        this.batteryRating = batteryRating;
+    }
+
 }

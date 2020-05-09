@@ -69,4 +69,11 @@ public class Product {
 	public void setProductRating(int productRating) {
 		this.productRating = productRating;
 	}
+
+	public Product(int productId, String productName, String productReview, int productRating) {
+		this.productId = productId;
+		this.productName = productName;
+		this.productReview = productReview;
+		this.productRating = productRating;
+	}
 }

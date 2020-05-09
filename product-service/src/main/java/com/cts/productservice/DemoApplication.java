@@ -32,7 +32,7 @@ public class DemoApplication {
 				.paths(PathSelectors.ant("/reviews/**"))
 				.build()
 				
-				.apiInfo(new ApiInfo("review API Documentation",
+				.apiInfo(new ApiInfo("Product API Documentation",
 						"A Sample API for review",
 						"1.0.0",
 						"Shopping is Fun",

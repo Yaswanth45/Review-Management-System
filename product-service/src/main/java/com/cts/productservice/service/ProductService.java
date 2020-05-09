@@ -1,6 +1,6 @@
 package com.cts.productservice.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import com.cts.productservice.entity.*;
 import com.cts.productservice.repo.*;
@@ -18,15 +18,15 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public Optional<Product> findByProductId(int productId){
-        return productRepository.findById(productId);
+    public List<Product> findByProductId(int productId){
+        return productRepository.findByProductId(productId);
     }
 
     public void deleteProductReview(int productId){
         productRepository.deleteById(productId);
     }
 
-    public Iterable<Product> findAll(){
+    public List<Product> findAll(){
         return productRepository.findAll();
     }
 }
