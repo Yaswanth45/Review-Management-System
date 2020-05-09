@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringBootJwtApplication<spring_boot_jwt>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.cts.SpringBootJwtApplication",
+            "projectName": "spring_boot_jwt",
+            "args": ""
+        }
+    ]
+}
