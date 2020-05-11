@@ -31,7 +31,7 @@ public class Camera {
 
     @Column(name = "stars")
     @ApiModelProperty(value = "Rating for the Camera")
-    private String cameraRating;
+    private int cameraRating;
 
     public int getCameraId() {
         return cameraId;
@@ -65,12 +65,13 @@ public class Camera {
         this.cameraReviewText = cameraReviewText;
     }
 
-    public String getCameraRating() {
+    public int getCameraRating() {
         return cameraRating;
     }
 
-    public void setCameraRating(String cameraRating) {
+    public void setCameraRating(int cameraRating) {
         this.cameraRating = cameraRating;
     }
+
 
 }

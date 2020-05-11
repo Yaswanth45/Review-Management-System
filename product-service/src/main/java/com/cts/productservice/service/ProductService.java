@@ -19,7 +19,7 @@ public class ProductService {
     }
 
     public List<Product> findByProductId(int productId){
-        return productRepository.findByProductId(productId);
+        return productRepository.findById(productId);
     }
 
     public void deleteProductReview(int productId){

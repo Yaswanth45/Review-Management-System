@@ -12,10 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
@@ -24,6 +26,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(value = "The Processor ", description = "Rest controller for Processor")
 @RestController
 @CrossOrigin
+@RequestMapping("products/")
 public class ProcessorController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -37,8 +40,8 @@ public class ProcessorController {
 	consumes = "A new Review in JSON",
 	notes = "Hit this URL to insert a new Processor review details"
 	)
-	@RequestMapping(method=RequestMethod.POST,value="reviews/processor")
-	void addReviews(@RequestBody Processor processor) {
+	@PostMapping(value="processor/reviews")
+	public void addReviews(@RequestBody Processor processor) {
 		logger.info("Adding processor reviews {}",processor);
 		processorService.addProcessorReview(processor);
 	}
@@ -47,7 +50,7 @@ public class ProcessorController {
 	consumes = "A new Review in JSON",
 	notes = "Hit this URL to get a Processor review details"
 	)
-	@RequestMapping("reviews/processor/{prid}")
+	@GetMapping("processor/reviews/{prid}")
 	public ResponseEntity<Processor> getByProcessorId(@PathVariable(name = "prid") int processorId) {
 		ResponseEntity<Processor> result;
 		logger.debug("Get the reviews by processorId {}",processorId);
@@ -65,8 +68,8 @@ public class ProcessorController {
 	consumes = "A processorId in JSON",
 	notes = "Hit this URL to delete a Processor review details"
 	)
-	@RequestMapping(method = RequestMethod.DELETE, value = "reviews/delete/processor/{processorId}")
-	void deleteProcessorReview(@PathVariable int processorId) {
+	@DeleteMapping(value = "processor/reviews/delete/{processorId}")
+	public void deleteProcessorReview(@PathVariable int processorId) {
 		logger.info("Dleteing the reviews by processorId {}",processorId);
 		processorService.deleteProcessorReview(processorId);
 	}
@@ -75,7 +78,7 @@ public class ProcessorController {
 	consumes = "Nothing direct mapping",
 	notes = "Hit this URL to get all Processor review details"
 	)
-	@RequestMapping("reviews/processor")
+	@GetMapping("processor/reviews")
 	public ResponseEntity<Iterable<Processor>> getAllProcessor() {
 		logger.debug("Get all reviews ");
 		ResponseEntity<Iterable<Processor>> result=new ResponseEntity<Iterable<Processor>>(processorService.getAllProcessor(),HttpStatus.OK);
@@ -88,8 +91,8 @@ public class ProcessorController {
 	consumes = "A new Review in JSON",
 	notes = "Hit this URL to get a Processor review details"
 	)
-	@RequestMapping("reviews/processor/products/{pid}")
-	List<Processor> findByProductIdProcessor(@PathVariable(name = "pid") int productId) {
+	@GetMapping("processor/reviews/productId/{pid}")
+	public List<Processor> findByProductIdProcessor(@PathVariable(name = "pid") int productId) {
 		logger.debug("Request to get the processor review by productId {}",productId);
 		List<Processor> result= processorService.findByProductIdProcessor(productId);
 

@@ -11,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
@@ -23,6 +25,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(value = "The Camera Controller", description = "Rest controller for Camera")
 @RestController
 @CrossOrigin
+@RequestMapping("products/")
 public class CameraController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -36,8 +39,8 @@ public class CameraController {
 	consumes = "A new Review in JSON",
 	notes = "Hit this URL to insert a new Camera review details"
 	)
-	@RequestMapping(method=RequestMethod.POST,value="reviews/camera")
-	void addReviews(@RequestBody Camera camera) {
+	@PostMapping(value="camera/reviews")
+	public void addReviews(@RequestBody Camera camera) {
 
 		logger.info("Adding camera review {}",camera);
 		cameraService.addCameraReviews(camera);
@@ -47,7 +50,7 @@ public class CameraController {
 	consumes = "A new Review in JSON",
 	notes = "Hit this URL to get a Camera review details"
 	)
-	@RequestMapping("reviews/camera/{cid}")
+	@GetMapping("camera/reviews/{cid}")
 	public ResponseEntity<Camera> getByCameraId(@PathVariable(name = "cid") int cameraId) {
 		ResponseEntity<Camera> result;
 
@@ -66,8 +69,8 @@ public class CameraController {
 	consumes = "A cameraId in JSON",
 	notes = "Hit this URL to delete a Camera review details"
 	)
-	@RequestMapping(method = RequestMethod.DELETE, value = "reviews/delete/camera/{cameraId}")
-	void deleteCameraReview(@PathVariable int cameraId) {
+	@DeleteMapping(value = "camera/reviews/delete/{cameraId}")
+	public void deleteCameraReview(@PathVariable int cameraId) {
 
 		logger.info("Deleting the camera review with its Id {}",cameraId);
 		cameraService.deleteCameraReview(cameraId);
@@ -77,7 +80,7 @@ public class CameraController {
 	consumes = "Nothing direct mapping",
 	notes = "Hit this URL to get all Camera review details"
 	)
-	@RequestMapping("reviews/camera")
+	@GetMapping("camera/reviews")
 	public ResponseEntity<Iterable<Camera>> getAllCamera() {
 
 		logger.info("Get All camera Reviews {}");
@@ -88,8 +91,8 @@ public class CameraController {
 	consumes = "A new Review in JSON",
 	notes = "Hit this URL to get a Camera review details"
 	)
-	@RequestMapping("reviews/camera/products/{pid}")
-	List<Camera> findByProductIdCamera(@PathVariable(name = "pid") int productId) {
+	@GetMapping("camera/reviews/productId/{pid}")
+	public List<Camera> findByProductIdCamera(@PathVariable(name = "pid") int productId) {
 
 		logger.debug("Getting the camera review with productId {}",productId);
 		List<Camera> result= cameraService.findByProductIdCamera(productId);

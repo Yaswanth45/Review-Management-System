@@ -7,9 +7,10 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
@@ -29,22 +30,23 @@ public class ReviewController {
 	notes = "Hit this URL to get a new product's details"
 	)
     @HystrixCommand(fallbackMethod = "fallback")
-    @RequestMapping(value = "reviews/products/{p_id}", method = RequestMethod.GET)
+    @GetMapping(value = "reviews/products/{p_id}")
     public Product getReviews(@PathVariable(name="p_id") int productId){
         log.info("Getting info from product");
         return reviewService.getReviews(productId);
     }
 
-    public String fallback(String err){
-        err="Server down So you are seeing this message";
-        return err;
+    public Product fallback(int productId){
+    
+      log.error("Server Down");
+      return new Product(0,"Samsung","Good",4);
     }
 
     @ApiOperation(value = "Delete a Product Review in Product Service",
 	consumes = "A new Review Id in JSON",
 	notes = "Hit this URL to delete a new product's details"
 	)
-    @RequestMapping(value = "reviews/delete/products/{p_id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "reviews/products/delete/{p_id}")
     public void deleteReviews(@PathVariable(name="p_id") int productId){
         log.info("Deleting reviews in  product");
         reviewService.deleteReviews(productId);
@@ -54,9 +56,9 @@ public class ReviewController {
 	consumes = "A new Review  in JSON",
 	notes = "Hit this URL to Post a new product's details"
 	)
-    @RequestMapping(value = "reviews/products", method = RequestMethod.POST)
+    @PostMapping(value = "reviews/products")
     public void addReviews(Product product){
-        log.info("Deleting reviews in  product");
+        log.info("Posting reviews in  product");
         reviewService.addReviews(product);
     }
 

@@ -11,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
@@ -23,6 +25,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(value = "The Ram Controller", description = "Rest controller for Ram")
 @RestController
 @CrossOrigin
+@RequestMapping("products/")
 public class RamController {
 	
 	private Logger log=LoggerFactory.getLogger(this.getClass());
@@ -36,8 +39,8 @@ public class RamController {
 	consumes = "A new Review in JSON",
 	notes = "Hit this URL to insert a new Ram review details"
 	)
-	@RequestMapping(method=RequestMethod.POST,value="reviews/ram")
-	void addReviews(@RequestBody Ram ram) {
+	@PostMapping(value="ram/reviews")
+	public void addReviews(@RequestBody Ram ram) {
 		log.info("Adding the Ram reviews {}");
 		ramService.addRamReviews(ram);
 	}
@@ -46,7 +49,7 @@ public class RamController {
 	consumes = "A new Review in JSON",
 	notes = "Hit this URL to get a  Ram review details"
 	)
-	@RequestMapping("reviews/ram/{rid}")
+	@GetMapping("ram/reviews/{rid}")
 	public ResponseEntity<Ram> getByRamId(@PathVariable(name = "rid") int ramId) {
 		ResponseEntity<Ram> result;
 		log.debug("Request to get the reviews by ramId {}",ramId);
@@ -64,9 +67,9 @@ public class RamController {
 	consumes = "A ramId in JSON",
 	notes = "Hit this URL to delete a Ram review details"
 	)
-	@RequestMapping(method = RequestMethod.DELETE, value = "reviews/delete/ram/{ramId}")
-	void deleteRamReview(@PathVariable int ramId) {
-		log.info("Request to delete the reviews by ramId {]",ramId);
+	@DeleteMapping(value = "ram/reviews/delete/{ramId}")
+	public void deleteRamReview(@PathVariable int ramId) {
+		log.info("Request to delete the reviews by ramId {}",ramId);
 		ramService.deleteRamReview(ramId);
 	}
 
@@ -74,7 +77,7 @@ public class RamController {
 	consumes = "Nothing direct mapping",
 	notes = "Hit this URL to get all Ram review details"
 	)
-    @RequestMapping("reviews/ram")
+    @GetMapping("ram/reviews")
 	public ResponseEntity<Iterable<Ram>> getAllRam() {
 		log.debug("Request to get all reviews {}");
 		ResponseEntity<Iterable<Ram>> result=new ResponseEntity<Iterable<Ram>>(ramService.getAllRam(),HttpStatus.OK);
@@ -86,8 +89,8 @@ public class RamController {
 	consumes = "A new Review in JSON",
 	notes = "Hit this URL to get a Ram review details"
 	)
-	@RequestMapping("reviews/ram/products/{pid}")
-	List<Ram> findByProductIdRam(@PathVariable(name = "pid") int productId) {
+	@GetMapping("ram/reviews/productId/{pid}")
+	public List<Ram> findByProductIdRam(@PathVariable(name = "pid") int productId) {
 		log.debug("Request to get the reviews by productId {}",productId);
 		List<Ram> result= ramService.findByProductIdRam(productId);
 		log.debug("All reviews based on productId {}",result);

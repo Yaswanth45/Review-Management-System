@@ -33,6 +33,9 @@ public class Battery {
     @Column(name = "stars")
     private int batteryRating;
 
+    public Battery(){
+        super();
+    }
 
     public int getBatteryId() {
         return batteryId;
