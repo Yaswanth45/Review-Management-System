@@ -15,4 +15,7 @@ public interface BatteryRepository extends CrudRepository<Battery,Integer>{
     @Query(value = "Select * from battery e where e.p_id=:productId",nativeQuery = true)
     List<Battery> findByProductId(int productId);
 
+    List<Battery> findById(int batteryId);
+
+    List<Battery> findAll();
 }

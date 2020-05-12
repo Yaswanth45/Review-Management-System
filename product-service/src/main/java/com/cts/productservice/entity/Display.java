@@ -74,4 +74,12 @@ public class Display {
         this.displayRating = displayRating;
     }
 
+    public Display(int displayId, float inches, Product product, String displayReview, int displayRating) {
+        this.displayId = displayId;
+        this.inches = inches;
+        this.product = product;
+        this.displayReview = displayReview;
+        this.displayRating = displayRating;
+    }
+
 }

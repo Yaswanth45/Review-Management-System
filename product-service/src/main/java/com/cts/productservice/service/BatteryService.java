@@ -2,7 +2,6 @@ package com.cts.productservice.service;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import com.cts.productservice.entity.*;
 import com.cts.productservice.repo.*;
@@ -20,7 +19,7 @@ public class BatteryService {
         batteryRepository.save(battery);
     }
 
-    public Optional<Battery> getByBatteryId(int batteryId){
+    public List<Battery> getByBatteryId(int batteryId){
         return batteryRepository.findById(batteryId);
     }
 
@@ -32,7 +31,7 @@ public class BatteryService {
 		batteryRepository.deleteById(batteryId);	
 	}
 
-    public Iterable<Battery> getAllBattery(){
+    public List<Battery> getAllBattery(){
         return batteryRepository.findAll();
     }
 }

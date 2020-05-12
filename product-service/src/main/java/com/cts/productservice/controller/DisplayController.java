@@ -51,14 +51,14 @@ public class DisplayController {
 	notes = "Hit this URL to get a Display review details"
 	)
 	@GetMapping(value="display/reviews/{did}")
-	public ResponseEntity<Display> getByDisplayId(@PathVariable(name = "did") int displayId) {
-		ResponseEntity<Display> result;
+	public ResponseEntity<List<Display>> getByDisplayId(@PathVariable(name = "did") int displayId) {
+		ResponseEntity<List<Display>> result;
 		logger.debug("Getting the display reviews with displayId {}",displayId);
-		Display entity = displayService.getByDisplayId(displayId).orElse(null);
+		List<Display> entity = displayService.getByDisplayId(displayId);
 		if (null != entity) {
-			result = new ResponseEntity<Display>(entity, HttpStatus.OK);
+			result = new ResponseEntity<List<Display>>(entity, HttpStatus.OK);
 		} else {
-			result = new ResponseEntity<Display>(HttpStatus.NOT_FOUND);
+			result = new ResponseEntity<List<Display>>(HttpStatus.NOT_FOUND);
 		}
 		logger.debug("Output {}",result);
 		return result;
@@ -79,9 +79,9 @@ public class DisplayController {
 	notes = "Hit this URL to get all Display review details"
 	)
 	@GetMapping(value="display/reviews")
-	public ResponseEntity<Iterable<Display>> getAllDisplay() {
+	public ResponseEntity<List<Display>> getAllDisplay() {
 		logger.debug("Get all display reviews");
-		ResponseEntity<Iterable<Display>> result =new ResponseEntity<Iterable<Display>>(displayService.getAllDisplay(),HttpStatus.OK);
+		ResponseEntity<List<Display>> result =new ResponseEntity<List<Display>>(displayService.getAllDisplay(),HttpStatus.OK);
 		
 		logger.debug("Display Reviews {}",result);
 		return result;

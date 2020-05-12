@@ -51,14 +51,14 @@ public class ProcessorController {
 	notes = "Hit this URL to get a Processor review details"
 	)
 	@GetMapping("processor/reviews/{prid}")
-	public ResponseEntity<Processor> getByProcessorId(@PathVariable(name = "prid") int processorId) {
-		ResponseEntity<Processor> result;
+	public ResponseEntity<List<Processor>> getByProcessorId(@PathVariable(name = "prid") int processorId) {
+		ResponseEntity<List<Processor>> result;
 		logger.debug("Get the reviews by processorId {}",processorId);
-		Processor entity = processorService.getByProcessorId(processorId).orElse(null);
+		List<Processor> entity = processorService.getByProcessorId(processorId);
 		if (null != entity) {
-			result = new ResponseEntity<Processor>(entity, HttpStatus.OK);
+			result = new ResponseEntity<List<Processor>>(entity, HttpStatus.OK);
 		} else {
-			result = new ResponseEntity<Processor>(HttpStatus.NOT_FOUND);
+			result = new ResponseEntity<List<Processor>>(HttpStatus.NOT_FOUND);
 		}
 		logger.debug("The reviews of processor are {}",result);
 		return result;
@@ -79,9 +79,9 @@ public class ProcessorController {
 	notes = "Hit this URL to get all Processor review details"
 	)
 	@GetMapping("processor/reviews")
-	public ResponseEntity<Iterable<Processor>> getAllProcessor() {
+	public ResponseEntity<List<Processor>> getAllProcessor() {
 		logger.debug("Get all reviews ");
-		ResponseEntity<Iterable<Processor>> result=new ResponseEntity<Iterable<Processor>>(processorService.getAllProcessor(),HttpStatus.OK);
+		ResponseEntity<List<Processor>> result=new ResponseEntity<List<Processor>>(processorService.getAllProcessor(),HttpStatus.OK);
 		logger.debug("All Processor Reviews {}",result);
 		return result;
 	}

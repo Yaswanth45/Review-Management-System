@@ -15,4 +15,8 @@ public interface DisplayRepository extends CrudRepository<Display,Integer> {
         
     @Query(value = "Select * from display e where e.p_id=:productId",nativeQuery = true)
     List<Display> findByProductIdDisplay(int productId);
+
+    List<Display> findById(int displayId);
+
+    List<Display> findAll();
 }

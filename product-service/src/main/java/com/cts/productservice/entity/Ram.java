@@ -73,4 +73,12 @@ public class Ram {
 		this.ramRating = ramRating;
 	}
 
+	public Ram(int ramId, int ramSize, Product product, String ramReview, int ramRating) {
+		this.ramId = ramId;
+		this.ramSize = ramSize;
+		this.product = product;
+		this.ramReview = ramReview;
+		this.ramRating = ramRating;
+	}
+
 }

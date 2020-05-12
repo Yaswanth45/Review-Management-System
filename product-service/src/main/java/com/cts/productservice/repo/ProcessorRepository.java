@@ -14,4 +14,8 @@ public interface ProcessorRepository extends CrudRepository<Processor,Integer> {
         
     @Query(value = "Select * from processor e where e.p_id=:productId",nativeQuery = true)
     List<Processor> findByProductIdProcessor(int productId);
+
+    List<Processor> findById(int processorId);
+
+    List<Processor> findAll();
 }

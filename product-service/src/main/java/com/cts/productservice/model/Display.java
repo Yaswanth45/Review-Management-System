@@ -21,13 +21,6 @@ public class Display {
         this.displayId = displayId;
     }
 
-    public float getInches() {
-        return inches;
-    }
-
-    public void setInches(float inches) {
-        this.inches = inches;
-    }
 
     public Product getProduct() {
         return product;
@@ -53,4 +46,21 @@ public class Display {
         this.displayRating = displayRating;
     }
 
+    public float getInches() {
+        return inches;
+    }
+
+    public void setInches(float inches) {
+        this.inches = inches;
+    }
+
+    public Display(int displayId, float inches, Product product, String displayReview, int displayRating) {
+        this.displayId = displayId;
+        this.inches = inches;
+        this.product = product;
+        this.displayReview = displayReview;
+        this.displayRating = displayRating;
+    }
+
+   
 }

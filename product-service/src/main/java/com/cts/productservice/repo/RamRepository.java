@@ -13,4 +13,8 @@ public interface RamRepository extends CrudRepository<Ram,Integer> {
     
     @Query(value = "Select * from ram e where e.p_id=:productId",nativeQuery = true)
     List<Ram> findByProductIdRam(int productId);
+
+    List<Ram> findById(int productId);
+
+    List<Ram> findAll();
 }

@@ -50,15 +50,15 @@ public class BatteryController {
 	notes = "Hit this URL to get a Battery review details"
 	)
 	@GetMapping("battery/reviews/{bid}")
-	public ResponseEntity<Battery> getByBatteryId(@PathVariable(name = "bid") int batteryId) {
-		ResponseEntity<Battery> result;
+	public ResponseEntity<List<Battery>> getByBatteryId(@PathVariable(name = "bid") int batteryId) {
+		ResponseEntity<List<Battery>> result;
 
 		logger.debug("Request {}",batteryId);
-		Battery entity = batteryService.getByBatteryId(batteryId).orElse(null);
+		List<Battery> entity = batteryService.getByBatteryId(batteryId);
 		if (null != entity) {
-			result = new ResponseEntity<Battery>(entity, HttpStatus.OK);
+			result = new ResponseEntity<List<Battery>>(entity, HttpStatus.OK);
 		} else {
-			result = new ResponseEntity<Battery>(HttpStatus.NOT_FOUND);
+			result = new ResponseEntity<List<Battery>>(HttpStatus.NOT_FOUND);
 		}
 
 		logger.debug("{}",result);
@@ -94,11 +94,11 @@ public class BatteryController {
 	notes = "Hit this URL to get all Battery review details"
 	)
 	@GetMapping("battery/reviews")
-	public ResponseEntity<Iterable<Battery>> getAllBattery() {
+	public ResponseEntity<List<Battery>> getAllBattery() {
 
 		logger.info("Request All reviews {}");
 
-		return new ResponseEntity<Iterable<Battery>>(batteryService.getAllBattery(),HttpStatus.OK);
+		return new ResponseEntity<List<Battery>>(batteryService.getAllBattery(),HttpStatus.OK);
 
 	}
 

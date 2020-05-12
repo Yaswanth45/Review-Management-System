@@ -1,7 +1,6 @@
 package com.cts.productservice.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.cts.productservice.entity.*;
 import com.cts.productservice.repo.*;
@@ -19,7 +18,7 @@ public class RamService {
         ramRepository.save(ram);
     }
     
-    public Optional<Ram> getByRamId(int ramId){
+    public List<Ram> getByRamId(int ramId){
         return ramRepository.findById(ramId);
     }
 
@@ -31,7 +30,7 @@ public class RamService {
         ramRepository.deleteById(ramId);
     }
 
-    public Iterable<Ram> getAllRam(){
+    public List<Ram> getAllRam(){
         return ramRepository.findAll();
     }
 }

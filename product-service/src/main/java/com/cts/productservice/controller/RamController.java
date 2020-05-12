@@ -50,14 +50,14 @@ public class RamController {
 	notes = "Hit this URL to get a  Ram review details"
 	)
 	@GetMapping("ram/reviews/{rid}")
-	public ResponseEntity<Ram> getByRamId(@PathVariable(name = "rid") int ramId) {
-		ResponseEntity<Ram> result;
+	public ResponseEntity<List<Ram>> getByRamId(@PathVariable(name = "rid") int ramId) {
+		ResponseEntity<List<Ram>> result;
 		log.debug("Request to get the reviews by ramId {}",ramId);
-		Ram entity = ramService.getByRamId(ramId).orElse(null);
+		List<Ram> entity = ramService.getByRamId(ramId);
 		if (null != entity) {
-			result = new ResponseEntity<Ram>(entity, HttpStatus.OK);
+			result = new ResponseEntity<List<Ram>>(entity, HttpStatus.OK);
 		} else {
-			result = new ResponseEntity<Ram>(HttpStatus.NOT_FOUND);
+			result = new ResponseEntity<List<Ram>>(HttpStatus.NOT_FOUND);
 		}
 		log.debug("Reviews by the ramId {}",result);
 		return result;
@@ -78,9 +78,9 @@ public class RamController {
 	notes = "Hit this URL to get all Ram review details"
 	)
     @GetMapping("ram/reviews")
-	public ResponseEntity<Iterable<Ram>> getAllRam() {
+	public ResponseEntity<List<Ram>> getAllRam() {
 		log.debug("Request to get all reviews {}");
-		ResponseEntity<Iterable<Ram>> result=new ResponseEntity<Iterable<Ram>>(ramService.getAllRam(),HttpStatus.OK);
+		ResponseEntity<List<Ram>> result=new ResponseEntity<List<Ram>>(ramService.getAllRam(),HttpStatus.OK);
 		log.debug("All reviews of Ram {}",result);
 		return result;
 	}

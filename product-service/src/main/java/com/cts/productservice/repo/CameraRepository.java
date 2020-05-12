@@ -14,4 +14,8 @@ public interface CameraRepository extends CrudRepository<Camera,Integer> {
         
     @Query(value = "Select * from camera e where e.p_id=:productId",nativeQuery = true)
     List<Camera> findByProductIdCamera(int productId);
+
+    List<Camera> findById(int cameraId);
+
+    List<Camera> findAll();
 }

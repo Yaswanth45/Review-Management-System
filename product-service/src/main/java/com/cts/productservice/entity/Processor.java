@@ -73,4 +73,13 @@ public class Processor {
         this.processorRating = processorRating;
     }
 
+    public Processor(int processorId, String processorName, Product product, String processorReview,
+            int processorRating) {
+        this.processorId = processorId;
+        this.processorName = processorName;
+        this.product = product;
+        this.processorReview = processorReview;
+        this.processorRating = processorRating;
+    }
+
 }

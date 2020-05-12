@@ -1,7 +1,6 @@
 package com.cts.productservice.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.cts.productservice.entity.*;
 import com.cts.productservice.repo.*;
@@ -19,7 +18,7 @@ public class DisplayService {
         displayRepository.save(display);
     }
 
-    public Optional<Display> getByDisplayId(int displayId){
+    public List<Display> getByDisplayId(int displayId){
         return displayRepository.findById(displayId);
     }
 
@@ -31,7 +30,7 @@ public class DisplayService {
 		displayRepository.deleteById(displayId);	
 	} 
 
-    public Iterable<Display> getAllDisplay(){
+    public List<Display> getAllDisplay(){
         return displayRepository.findAll();
     }
 }

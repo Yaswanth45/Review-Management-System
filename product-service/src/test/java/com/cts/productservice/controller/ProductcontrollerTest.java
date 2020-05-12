@@ -41,15 +41,16 @@ public class ProductcontrollerTest {
 	// 	Product product = new Product(0, "Lenovo", "Not bad", 3);
 	// 	when(productRepository.save(product)).thenReturn(product);
 	// 	assertEquals(product, productService.addProductReview(product));
-    // }
-    
-    // @Test
-	// public void getByProductIdTest() {
-	// 	int productId = 1;
-	// 	when(productRepository.findById(productId))
-	// 			.thenReturn(Stream.of(new List<Product>(1, "Iphone", "Excellent",5)).collect(Collectors.toList()));
-	// 	assertEquals(1, productService.findByProductId(productId).size());
 	// }
+
+    
+    @Test
+	public void getByProductIdTest() {
+		int productId = 1;
+		when(productRepository.findById(productId))
+				.thenReturn(Stream.of(new Product(1, "Iphone", "Excellent",5)).collect(Collectors.toList()));
+		assertEquals(1, productService.findByProductId(productId).size());
+	}
 
     @Test
 	public void deleteProductReview() {

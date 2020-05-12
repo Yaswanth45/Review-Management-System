@@ -1,7 +1,6 @@
 package com.cts.productservice.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.cts.productservice.entity.*;
 import com.cts.productservice.repo.*;
@@ -19,7 +18,7 @@ public class CameraService {
         cameraRepository.save(camera);
     }
 
-    public Optional<Camera> getByCameraId(int cameraId){
+    public List<Camera> getByCameraId(int cameraId){
         return cameraRepository.findById(cameraId);
     }
 
@@ -31,7 +30,7 @@ public class CameraService {
 		cameraRepository.deleteById(cameraId);	
 	} 
 
-    public Iterable<Camera> getAllCamera(){
+    public List<Camera> getAllCamera(){
         return cameraRepository.findAll();
     }
 }

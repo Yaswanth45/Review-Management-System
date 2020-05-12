@@ -1,7 +1,16 @@
 package com.cts.productservice.controller;
 
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import com.cts.productservice.entity.Product;
+import com.cts.productservice.entity.Ram;
 import com.cts.productservice.repo.RamRepository;
 import com.cts.productservice.service.RamService;
 
@@ -20,33 +29,32 @@ public class RamControllerTest {
     @Mock
     private RamRepository ramRepository;
 
-    // @Test
-	// public void getAllRamTest() {
-	// when(ramRepository.findAll()).thenReturn(Stream
-	// .of(new Ram(1, 8, new
-	// Product(1,"Iphone","Excellent",5),"Excellent", 4), new Ram(2, 6,new
-	// Product(2,"Samsung","Excellent",4), "Long lasting",
-	// 5)).collect(Collectors.toList()));
-	// assertEquals(2, ramService.getAllRam().size());
-	// }
+    @Test
+	public void getAllRamTest() {
+	when(ramRepository.findAll()).thenReturn(Stream
+	.of(new Ram(1, 8, new
+	Product(1,"Iphone","Excellent",5),"Excellent", 4), new Ram(2, 6,new
+	Product(2,"Samsung","Excellent",4), "Long lasting",
+	5)).collect(Collectors.toList()));
+	assertEquals(2, ramService.getAllRam().size());
+	}
 
 	
     // @Test
-	// public void addProductReviewTest() {
-	// 	Battery battery = new Battery(0, "6000mah", new Product(1,"Iphone","Excellent",5),"long life", 4);
-	// 	when(batteryRepository.save(battery)).thenReturn(battery);
-	// 	assertEquals(battery, batteryService.addBatteryReviews(battery));
+	// public void addRamReviewTest() {
+	// 	Ram ram = new Ram(1, 8, new Product(1,"Iphone","Excellent",5),"Excellent", 4);
+	// 	when(ramRepository.save(ram)).thenReturn(ram);
+	// 	assertEquals(ram, ramService.addRamReviews(ram));
     // }
     
-    // @Test
-	// public void getByRamIdTest() {
-	// 	int ramId = 1;
-	// 	when(ramRepository.findById(ramId))
-	// 			.thenReturn(Stream.of(new List<Ram>(1, 8, "Excellent",4)).collect(Collectors.toList()));
-	// 	assertEquals(1, ramService.getByRamId(ramId).size());
-	// }
-
-
+    @Test
+	public void getByRamIdTest() {
+		int ramId = 1;
+		when(ramRepository.findById(ramId))
+			.thenReturn(Stream.of(new Ram(1, 8, new Product(1,"Iphone","Excellent",5),"Excellent", 4)).collect(Collectors.toList()));
+		assertEquals(1, ramService.getByRamId(ramId).size());
+	}
+	
 	@Test
 	public void deleteProduct() {
         Integer ramId=1;

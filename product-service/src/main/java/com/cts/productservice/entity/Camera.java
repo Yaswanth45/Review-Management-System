@@ -73,5 +73,13 @@ public class Camera {
         this.cameraRating = cameraRating;
     }
 
+    public Camera(int cameraId, int resolution, Product product, String cameraReviewText, int cameraRating) {
+        this.cameraId = cameraId;
+        this.resolution = resolution;
+        this.product = product;
+        this.cameraReviewText = cameraReviewText;
+        this.cameraRating = cameraRating;
+    }
 
+    
 }

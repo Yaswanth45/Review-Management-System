@@ -51,15 +51,15 @@ public class CameraController {
 	notes = "Hit this URL to get a Camera review details"
 	)
 	@GetMapping("camera/reviews/{cid}")
-	public ResponseEntity<Camera> getByCameraId(@PathVariable(name = "cid") int cameraId) {
-		ResponseEntity<Camera> result;
+	public ResponseEntity<List<Camera>> getByCameraId(@PathVariable(name = "cid") int cameraId) {
+		ResponseEntity<List<Camera>> result;
 
 		logger.debug("Request the cameraID to get reviews {}",cameraId);
-		Camera entity = cameraService.getByCameraId(cameraId).orElse(null);
+		List<Camera> entity = cameraService.getByCameraId(cameraId);
 		if (null != entity) {
-			result = new ResponseEntity<Camera>(entity, HttpStatus.OK);
+			result = new ResponseEntity<List<Camera>>(entity, HttpStatus.OK);
 		} else {
-			result = new ResponseEntity<Camera>(HttpStatus.NOT_FOUND);
+			result = new ResponseEntity<List<Camera>>(HttpStatus.NOT_FOUND);
 		}
 		logger.debug("Output {}",result);
 		return result;
@@ -81,10 +81,10 @@ public class CameraController {
 	notes = "Hit this URL to get all Camera review details"
 	)
 	@GetMapping("camera/reviews")
-	public ResponseEntity<Iterable<Camera>> getAllCamera() {
+	public ResponseEntity<List<Camera>> getAllCamera() {
 
 		logger.info("Get All camera Reviews {}");
-		return new ResponseEntity<Iterable<Camera>>(cameraService.getAllCamera(),HttpStatus.OK);
+		return new ResponseEntity<List<Camera>>(cameraService.getAllCamera(),HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "Get a Camera Review by ProductId",

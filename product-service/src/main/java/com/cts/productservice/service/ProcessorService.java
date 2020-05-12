@@ -1,8 +1,6 @@
 package com.cts.productservice.service;
 
 import java.util.List;
-import java.util.Optional;
-
 import com.cts.productservice.entity.*;
 import com.cts.productservice.repo.*;
 
@@ -19,7 +17,7 @@ public class ProcessorService {
         processorRepository.save(processor);
     }
 
-    public Optional<Processor> getByProcessorId(int processorId){
+    public List<Processor> getByProcessorId(int processorId){
         return processorRepository.findById(processorId);
     }
 
@@ -31,7 +29,7 @@ public class ProcessorService {
 		processorRepository.deleteById(processorId);	
 	}
 
-    public Iterable<Processor> getAllProcessor(){
+    public List<Processor> getAllProcessor(){
         return processorRepository.findAll();
     }
 }
