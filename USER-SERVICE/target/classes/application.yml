@@ -1,0 +1,48 @@
+
+server:
+     port: 8085
+spring:
+
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?useSSL=false
+    username: root
+    password: Sunny588
+    
+    
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        
+        
+        driverClassName: com.mysql.cj.jdbc.Driver
+    dialect: org.hibernate.dialect.MySQL8Dialect
+    
+   
+
+    spring:
+logging:
+  file: logs/dev_app.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    org.springframework.web: DEBUG
+    com.cts.controller: DEBUG
+    org.hibernate: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,beans,info,env
+
+# eureka:
+#   client:
+#     service-url:
+#       default-zone:
+#         http://localhost:8761/eureka/
