@@ -14,8 +14,10 @@ public class RamService {
     @Autowired
     public RamRepository ramRepository;
 
-    public void addRamReviews(Ram ram){
+    public String addRamReviews(Ram ram){
+        String message="Sucessfully added";
         ramRepository.save(ram);
+        return message;
     }
     
     public List<Ram> getByRamId(int ramId){

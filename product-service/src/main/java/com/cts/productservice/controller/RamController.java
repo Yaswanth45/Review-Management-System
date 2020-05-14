@@ -40,9 +40,9 @@ public class RamController {
 	notes = "Hit this URL to insert a new Ram review details"
 	)
 	@PostMapping(value="ram/reviews")
-	public void addReviews(@RequestBody Ram ram) {
+	public String addReviews(@RequestBody Ram ram) {
 		log.info("Adding the Ram reviews {}");
-		ramService.addRamReviews(ram);
+		return ramService.addRamReviews(ram);
 	}
 	
 	@ApiOperation(value = "Get a Ram Review",

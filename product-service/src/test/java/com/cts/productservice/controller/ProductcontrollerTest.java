@@ -37,9 +37,10 @@ public class ProductcontrollerTest {
     
     @Test
 	public void addProductReviewTest() {
+		String message="Successfully added";
 		Product product = new Product(7, "Lenovo", "Not bad", 3);
 		when(productRepository.save(product)).thenReturn(product);
-		// assertEquals(product, productService.addProductReview(product));
+		assertEquals(message, productService.addProductReview(product));
 	}
 	
     

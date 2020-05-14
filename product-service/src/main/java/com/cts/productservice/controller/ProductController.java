@@ -40,9 +40,9 @@ public class ProductController {
 	notes = "Hit this URL to insert a new product's details"
 	)
     @PostMapping
-	public void addProductReviews(@RequestBody Product product) {
+	public String addProductReviews(@RequestBody Product product) {
 		log.info("Adding the product Reviews {}",product);
-		productService.addProductReview(product);
+		return productService.addProductReview(product);
 	}
 	
 	@ApiOperation(value = "Get a Product Review",

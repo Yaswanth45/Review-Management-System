@@ -40,9 +40,10 @@ public class DisplayControllerTest {
 	
 	@Test
 	public void addCameraReviewTest() {
+		String message="Sucessfully added";
 		Display display=new Display(1, 6,new Product(1,"Iphone","Excellent",5), "Excellent",5);
 		when(displayRepository.save(display)).thenReturn(display);
-		// assertEquals(display, displayService.addDisplayReview(display));
+		assertEquals(message, displayService.addDisplayReviews(display));
 	}
 	
     @Test

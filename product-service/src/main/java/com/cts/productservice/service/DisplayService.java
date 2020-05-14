@@ -14,8 +14,10 @@ public class DisplayService {
     @Autowired
     public DisplayRepository displayRepository;
 
-    public void addDisplayReviews(Display display){
+    public String addDisplayReviews(Display display){
+        String message="Sucessfully added";
         displayRepository.save(display);
+        return message;
     }
 
     public List<Display> getByDisplayId(int displayId){

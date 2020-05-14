@@ -14,8 +14,10 @@ public class CameraService {
     @Autowired
     public CameraRepository cameraRepository;
 
-    public void addCameraReviews(Camera camera){
+    public String addCameraReviews(Camera camera){
+        String message="Sucessfully added";
         cameraRepository.save(camera);
+        return message;
     }
 
     public List<Camera> getByCameraId(int cameraId){

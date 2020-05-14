@@ -38,8 +38,10 @@ public class CameraControllerTest {
 
 	@Test
 	public void addCameraReviewTest() {
+		String message="Sucessfully added";
 		Camera camera=new Camera(1, 16 ,new Product(1,"Iphone","Excellent",5),"Good", 4);
 		when(cameraRepository.save(camera)).thenReturn(camera);
+		assertEquals(message,cameraService.addCameraReviews(camera));
 	}
 
 	@Test

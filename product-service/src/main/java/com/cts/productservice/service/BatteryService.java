@@ -15,8 +15,10 @@ public class BatteryService {
     @Autowired
     public BatteryRepository batteryRepository;
 
-    public void addBatteryReviews(Battery battery){
+    public String addBatteryReviews(Battery battery){
+        String message="Sucessfully added";
         batteryRepository.save(battery);
+        return message;
     }
 
     public List<Battery> getByBatteryId(int batteryId){

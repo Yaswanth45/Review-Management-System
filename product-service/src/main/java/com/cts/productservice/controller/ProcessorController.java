@@ -41,9 +41,9 @@ public class ProcessorController {
 	notes = "Hit this URL to insert a new Processor review details"
 	)
 	@PostMapping(value="processor/reviews")
-	public void addReviews(@RequestBody Processor processor) {
+	public String addReviews(@RequestBody Processor processor) {
 		logger.info("Adding processor reviews {}",processor);
-		processorService.addProcessorReview(processor);
+		return processorService.addProcessorReview(processor);
 	}
 		
 	@ApiOperation(value = "Get a Processor Review",

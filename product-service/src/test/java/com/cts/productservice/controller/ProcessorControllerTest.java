@@ -1,6 +1,6 @@
 package com.cts.productservice.controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -40,9 +40,10 @@ public class ProcessorControllerTest {
 
 	@Test
 	public void addProductReviewTest() {
+		String message="Sucessfully added";
 		Processor processor = new Processor(1, "SanpDragon" ,new Product(1,"Iphone","Excellent",5),"Good", 4);
 		when(processorRepository.save(processor)).thenReturn(processor);
-		
+		assertEquals(message,processorService.addProcessorReview(processor));
 	}
 	
 	@Test

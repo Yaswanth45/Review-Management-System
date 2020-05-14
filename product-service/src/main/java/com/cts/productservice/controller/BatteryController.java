@@ -39,10 +39,10 @@ public class BatteryController {
 	notes = "Hit this URL to insert a new Battery review details"
 	)
 	@PostMapping(value="battery/reviews")
-	public void addReviews(@RequestBody Battery battery) {
+	public String addReviews(@RequestBody Battery battery) {
 
 		logger.info("Adding the battery reviews {}",battery);
-		batteryService.addBatteryReviews(battery);
+		return batteryService.addBatteryReviews(battery);
 	}
 		
 	@ApiOperation(value = "Get a Battery Review",

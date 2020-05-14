@@ -1,7 +1,6 @@
 package com.cts.productservice.controller;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -42,9 +41,10 @@ public class BatteryControllerTest {
 	
     @Test
 	public void addProductReviewTest() {
+		String message="Sucessfully added";
 		Battery battery = new Battery(0, "6000mah", new Product(1,"Iphone","Excellent",5),"long life", 4);
 		when(batteryRepository.save(battery)).thenReturn(battery);
-		
+		assertEquals(message,batteryService.addBatteryReviews(battery));
 	}
 	
     @Test

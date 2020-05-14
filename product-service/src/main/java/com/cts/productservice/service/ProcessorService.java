@@ -13,8 +13,10 @@ public class ProcessorService {
     @Autowired
     public ProcessorRepository processorRepository;
 
-    public void addProcessorReview(Processor processor){
+    public String addProcessorReview(Processor processor){
+        String message = "Sucessfully added";
         processorRepository.save(processor);
+        return message;
     }
 
     public List<Processor> getByProcessorId(int processorId){

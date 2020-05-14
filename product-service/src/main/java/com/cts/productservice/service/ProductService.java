@@ -14,8 +14,10 @@ public class ProductService {
     @Autowired
     public ProductRepository productRepository;
 
-    public void addProductReview(Product product){
+    public String addProductReview(Product product){
+        String message="Successfully added";
         productRepository.save(product);
+        return message;
     }
 
     public List<Product> findByProductId(int productId){

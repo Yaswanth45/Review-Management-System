@@ -40,10 +40,11 @@ public class CameraController {
 	notes = "Hit this URL to insert a new Camera review details"
 	)
 	@PostMapping(value="camera/reviews")
-	public void addReviews(@RequestBody Camera camera) {
+	public String addReviews(@RequestBody Camera camera) {
 
 		logger.info("Adding camera review {}",camera);
-		cameraService.addCameraReviews(camera);
+		return cameraService.addCameraReviews(camera);
+		
 	}
 		
 	@ApiOperation(value = "Get a Camera Review",

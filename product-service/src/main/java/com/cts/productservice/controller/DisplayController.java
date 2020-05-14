@@ -40,10 +40,11 @@ public class DisplayController {
 	notes = "Hit this URL to insert a new Display review details"
 	)
 	@PostMapping(value="display/reviews")
-	public void addReviews(@RequestBody Display display) {
+	public String addReviews(@RequestBody Display display) {
 
 		logger.info("Adding the new display review {}",display);
-		displayService.addDisplayReviews(display);
+		return displayService.addDisplayReviews(display);
+		
 	}
 		
 	@ApiOperation(value = "Get a Display Review",
