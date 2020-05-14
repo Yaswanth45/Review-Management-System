@@ -40,12 +40,12 @@ public class RamControllerTest {
 	}
 
 	
-    // @Test
-	// public void addRamReviewTest() {
-	// 	Ram ram = new Ram(1, 8, new Product(1,"Iphone","Excellent",5),"Excellent", 4);
-	// 	when(ramRepository.save(ram)).thenReturn(ram);
-	// 	assertEquals(ram, ramService.addRamReviews(ram));
-    // }
+    @Test
+	public void addRamReviewTest() {
+		Ram ram = new Ram(1, 8, new Product(1,"Iphone","Excellent",5),"Excellent", 4);
+		when(ramRepository.save(ram)).thenReturn(ram);
+		//assertEquals(ram, ramService.addRamReviews(ram));
+    }
     
     @Test
 	public void getByRamIdTest() {

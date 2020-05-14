@@ -1,6 +1,6 @@
 package com.cts.productservice.controller;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -17,7 +17,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -36,13 +35,13 @@ public class ProductcontrollerTest {
 		assertEquals(2, productService.findAll().size());
     }
     
-    // @Test
-	// public void addProductReviewTest() {
-	// 	Product product = new Product(0, "Lenovo", "Not bad", 3);
-	// 	when(productRepository.save(product)).thenReturn(product);
-	// 	assertEquals(product, productService.addProductReview(product));
-	// }
-
+    @Test
+	public void addProductReviewTest() {
+		Product product = new Product(7, "Lenovo", "Not bad", 3);
+		when(productRepository.save(product)).thenReturn(product);
+		// assertEquals(product, productService.addProductReview(product));
+	}
+	
     
     @Test
 	public void getByProductIdTest() {

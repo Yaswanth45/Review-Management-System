@@ -39,6 +39,13 @@ public class ProcessorControllerTest {
 	}
 
 	@Test
+	public void addProductReviewTest() {
+		Processor processor = new Processor(1, "SanpDragon" ,new Product(1,"Iphone","Excellent",5),"Good", 4);
+		when(processorRepository.save(processor)).thenReturn(processor);
+		
+	}
+	
+	@Test
 	public void getByProcessorIdTest() {
 		int processorId = 1;
 		when(processorRepository.findById(processorId))

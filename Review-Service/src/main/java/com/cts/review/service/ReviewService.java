@@ -22,22 +22,20 @@ public class ReviewService {
 		return new RestTemplate();
     }
     
-    public Product getReviews(final int productId){
+    public Product getReviews(int productId){
 
        log.info("To get all the reviews from product-service{}");
-       return  restTemplate.getForObject("http://localhost:8965/products/reviews/{p_id}", Product.class,
-               productId);
-        
+       return restTemplate.getForObject("http://localhost:8965/products/reviews/{p_id}", Product.class,productId);
+                
     }
 
-    public void deleteReviews(final int productId){
+    public void deleteReviews(int productId){
 
         log.info("To get all the reviews from product-service{}");
         restTemplate.delete("http://localhost:8965/products/reviews/delete/{p_id}",productId);
-        
     }
 
-    public void addReviews(final Product product){
+    public void addReviews(Product product){
         log.info("Adding the product into product-service");
         restTemplate.postForObject("http://localhost:8965/products/reviews",product,Product.class,product);
     }

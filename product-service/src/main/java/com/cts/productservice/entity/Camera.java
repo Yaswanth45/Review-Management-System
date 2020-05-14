@@ -33,6 +33,10 @@ public class Camera {
     @ApiModelProperty(value = "Rating for the Camera")
     private int cameraRating;
 
+    public Camera(){
+        super();
+    }
+
     public int getCameraId() {
         return cameraId;
     }

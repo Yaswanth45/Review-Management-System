@@ -36,8 +36,15 @@ public class DisplayControllerTest {
 	Product(2,"Samsung","Excellent",4), "Nice",
 	5)).collect(Collectors.toList()));
 	assertEquals(2, displayService.getAllDisplay().size());
-    }
-    
+	}
+	
+	@Test
+	public void addCameraReviewTest() {
+		Display display=new Display(1, 6,new Product(1,"Iphone","Excellent",5), "Excellent",5);
+		when(displayRepository.save(display)).thenReturn(display);
+		// assertEquals(display, displayService.addDisplayReview(display));
+	}
+	
     @Test
 	public void getByDisplayIdTest() {
 		int displayId = 1;

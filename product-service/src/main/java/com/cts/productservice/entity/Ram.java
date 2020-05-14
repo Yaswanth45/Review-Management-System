@@ -33,6 +33,10 @@ public class Ram {
 	@ApiModelProperty(value = "Rating for the Ram")
 	private int ramRating;
 
+	public Ram(){
+		super();
+	}
+
 	public int getRamId() {
 		return ramId;
 	}

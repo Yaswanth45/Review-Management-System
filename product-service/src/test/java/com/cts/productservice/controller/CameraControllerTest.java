@@ -37,6 +37,12 @@ public class CameraControllerTest {
 	}
 
 	@Test
+	public void addCameraReviewTest() {
+		Camera camera=new Camera(1, 16 ,new Product(1,"Iphone","Excellent",5),"Good", 4);
+		when(cameraRepository.save(camera)).thenReturn(camera);
+	}
+
+	@Test
 	public void getByCameraIdTest() {
 		int cameraId = 1;
 		when(cameraRepository.findById(cameraId))

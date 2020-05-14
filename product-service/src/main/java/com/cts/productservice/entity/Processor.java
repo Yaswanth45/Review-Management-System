@@ -33,6 +33,10 @@ public class Processor {
     @ApiModelProperty(value = "Rating for the Processor")
     private int processorRating;
 
+    public Processor(){
+        super();
+    }
+
     public int getProcessorId() {
         return processorId;
     }

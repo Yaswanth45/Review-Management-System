@@ -14,18 +14,15 @@ import com.cts.productservice.entity.Product;
 import com.cts.productservice.repo.BatteryRepository;
 import com.cts.productservice.service.BatteryService;
 
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
 @RunWith(SpringRunner.class)
 public class BatteryControllerTest {
 
-	
 	@InjectMocks
 	private BatteryService batteryService;
 
@@ -43,13 +40,13 @@ public class BatteryControllerTest {
 	}
 
 	
-    // @Test
-	// public void addProductReviewTest() {
-	// 	Battery battery = new Battery(0, "6000mah", new Product(1,"Iphone","Excellent",5),"long life", 4);
-	// 	when(batteryRepository.save(battery)).thenReturn(battery);
-	// 	assertEquals(battery, batteryService.addBatteryReviews(battery));
-    // }
-    
+    @Test
+	public void addProductReviewTest() {
+		Battery battery = new Battery(0, "6000mah", new Product(1,"Iphone","Excellent",5),"long life", 4);
+		when(batteryRepository.save(battery)).thenReturn(battery);
+		
+	}
+	
     @Test
 	public void getByBatteryIdTest() {
 		int batteryId = 1;

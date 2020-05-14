@@ -34,6 +34,10 @@ public class Display {
     @ApiModelProperty(value = "Rating for the Display")
     private int displayRating;
 
+    public Display(){
+        super();
+    }
+
     public int getDisplayId() {
         return displayId;
     }
