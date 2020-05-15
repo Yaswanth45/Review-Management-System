@@ -48,9 +48,9 @@ public class ReviewController {
 	notes = "Hit this URL to delete a new product's details"
 	)
     @DeleteMapping(value = "reviews/products/delete/{p_id}")
-    public void deleteReviews(@PathVariable(name="p_id") int productId){
+    public String deleteReviews(@PathVariable(name="p_id") int productId){
         log.info("Deleting reviews in  product");
-        reviewService.deleteReviews(productId);
+        return reviewService.deleteReviews(productId);
     }
 
     @ApiOperation(value = "Add a Product Review in Product Service",
@@ -58,9 +58,9 @@ public class ReviewController {
 	notes = "Hit this URL to Post a new product's details"
 	)
     @PostMapping(value = "reviews/products")
-    public void addReviews(Product product){
+    public String addReviews(Product product){
         log.info("Posting reviews in  product");
-        reviewService.addReviews(product);
+        return reviewService.addReviews(product);
     }
 
 }

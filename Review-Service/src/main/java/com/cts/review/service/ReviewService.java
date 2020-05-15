@@ -29,15 +29,18 @@ public class ReviewService {
                 
     }
 
-    public void deleteReviews(int productId){
+    public String deleteReviews(int productId){
 
         log.info("To get all the reviews from product-service{}");
         restTemplate.delete("http://localhost:8965/products/reviews/delete/{p_id}",productId);
+        return "Deleted Sucessfully";
     }
 
-    public void addReviews(Product product){
+    public String addReviews(Product product){
+        String message="Sucessfully added";
         log.info("Adding the product into product-service");
-        restTemplate.postForObject("http://localhost:8965/products/reviews",product,Product.class,product);
+        restTemplate.postForEntity("http://localhost:8965/products/reviews",product,String.class,product);
+        return message;
     }
 
 }
