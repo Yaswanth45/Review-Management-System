@@ -1,5 +1,8 @@
 package com.cts.review.service;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.cts.review.entity.Product;
 
 import org.slf4j.Logger;
@@ -22,10 +25,10 @@ public class ReviewService {
 		return new RestTemplate();
     }
     
-    public Product getReviews(int productId){
+    public List<Product> getReviews(int productId){
 
-       log.info("To get all the reviews from product-service{}");
-       return restTemplate.getForObject("http://localhost:8965/products/reviews/{p_id}", Product.class,productId);
+       log.info("To get all the reviews from product-service {}",productId);
+       return Arrays.asList(restTemplate.getForObject("http://localhost:8965/products/reviews/{p_id}", Product[].class,productId));
                 
     }
 

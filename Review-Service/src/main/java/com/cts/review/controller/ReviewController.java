@@ -1,6 +1,8 @@
 package com.cts.review.controller;
 
 
+import java.util.List;
+
 import com.cts.review.entity.Product;
 import com.cts.review.service.ReviewService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
@@ -32,7 +34,7 @@ public class ReviewController {
 	)
     @HystrixCommand(fallbackMethod = "fallback")
     @GetMapping(value = "reviews/products/{p_id}")
-    public Product getReviews(@PathVariable(name="p_id") int productId){
+    public List<Product> getReviews(@PathVariable(name="p_id") int productId){
         log.info("Getting info from product");
         return reviewService.getReviews(productId);
     }
